@@ -38,11 +38,18 @@ print("           UNIFORM RNG")
 print("==========================================")
 
 print(f"Number of shots: {shots}")
-print(f"Valid results: {len(valid_counts)}")
+
+valid_shots = sum(valid_counts.values())
+
+unique_values = len(valid_counts)
+
+print(f"Valid shots: {valid_shots}")
+print(f"Unique values: {unique_values}")
 
 if valid_counts:
-    average = sum(valid_counts) / len(valid_counts)
-
+    total = sum(number * count for number, count in valid_counts.items())
+    average = total / valid_shots
+    
     print(f"Average: {average:.2f}")
     print(f"Minimum: {min(valid_counts)}")
     print(f"Maximum: {max(valid_counts)}")
@@ -61,8 +68,9 @@ if show_results == "Y":
     print("           ALL RESULTS")
     print("==========================================")
 
-    for number in sorted(valid_counts):
-        print(number)
+    for number, count in sorted(valid_counts.items()):
+        for _ in range(count):
+            print(number)
 
 else:
     print("\nResults not displayed. Please try again.")
