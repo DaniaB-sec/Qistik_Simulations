@@ -40,16 +40,22 @@ print("==========================================")
 print(f"Number of shots: {shots}")
 
 valid_shots = sum(valid_counts.values())
-
+invalid_shots = shots - valid_shots
 unique_values = len(valid_counts)
 
+acceptance_rate = (valid_shots / shots) * 100
+
 print(f"Valid shots: {valid_shots}")
+print(f"Invalid shots: {invalid_shots}")
+print(f"Acceptance rate: {acceptance_rate:.2f}%")
 print(f"Unique values: {unique_values}")
 
 if valid_counts:
-    total = sum(number * count for number, count in valid_counts.items())
+    total = sum(
+        number * count
+        for number, count in valid_counts.items()
+    )
     average = total / valid_shots
-    
     print(f"Average: {average:.2f}")
     print(f"Minimum: {min(valid_counts)}")
     print(f"Maximum: {max(valid_counts)}")
