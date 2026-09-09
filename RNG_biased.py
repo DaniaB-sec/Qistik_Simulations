@@ -53,5 +53,54 @@ for bitstring, count in out_counts.items():
         valid_counts[number] = count
 
 
-print("\nBiased RNG results (0-1000):")
-print(valid_counts)
+print()
+print("==========================================")
+print("            BIASED RNG")
+print("==========================================")
+
+print(f"Number of shots: {shots}")
+
+
+valid_shots = sum(valid_counts.values())
+unique_values = len(valid_counts)
+
+print(f"Valid shots: {valid_shots}")
+print(f"Unique values: {unique_values}")
+
+
+if valid_counts:
+
+    total = sum(number * count for number, count in valid_counts.items())
+
+    average = total / valid_shots
+
+    print(f"Average: {average:.2f}")
+    print(f"Minimum: {min(valid_counts)}")
+    print(f"Maximum: {max(valid_counts)}")
+
+else:
+
+    print("No valid results were obtained.")
+
+
+show_results = input(
+    "\nClick Y to see all the results after: "
+).strip().upper()
+
+
+if show_results == "Y":
+
+    print()
+    print("==========================================")
+    print("             ALL RESULTS")
+    print("==========================================")
+
+    for number, count in sorted(valid_counts.items()):
+
+        for _ in range(count):
+            print(number)
+
+else:
+
+    print()
+    print("Results not displayed. Please try again.")
